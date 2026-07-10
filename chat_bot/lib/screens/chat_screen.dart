@@ -67,15 +67,51 @@ class _ChatScreenState extends State<ChatScreen> {
     _scrollToBottom();
   }
 
+  Widget _buildTogoFlag() {
+    return Container(
+      width: 40,
+      height: 30,
+      margin: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.white24, width: 1),
+      ),
+      child: Stack(
+        children: [
+          Column(
+            children: [
+              Expanded(child: Container(color: const Color(0xFF006A4E))), // Green
+              Expanded(child: Container(color: const Color(0xFFFFCE00))), // Yellow
+              Expanded(child: Container(color: const Color(0xFF006A4E))), // Green
+              Expanded(child: Container(color: const Color(0xFFFFCE00))), // Yellow
+              Expanded(child: Container(color: const Color(0xFF006A4E))), // Green
+            ],
+          ),
+          Container(
+            width: 15,
+            height: 15,
+            color: const Color(0xFFD21034), // Red square
+            child: const Center(
+              child: Icon(Icons.star, color: Colors.white, size: 10),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       top: false,
       child: Scaffold(
         appBar: AppBar(
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: _buildTogoFlag(),
+          ),
           title: const Text(
             'Togo IA Chatbot',
-            style: TextStyle(fontSize: 30),
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
           foregroundColor: Colors.white,
           actions: [
@@ -113,26 +149,19 @@ class _ChatScreenState extends State<ChatScreen> {
                               margin: const EdgeInsets.all(6),
                               color: const Color.fromRGBO(0, 112, 82, 1),
                               child: ListTile(
-                                title: Text("${_messages[index]['question']}",
-                                  style: const TextStyle(color: Colors.white,fontSize: 20),),
+                                title: Text(msg['question'] ?? ''),
                               ),
                             ),
                           ),
                         ],
                       ),
-                      _messages[index]['answer'] == null ?
-                          const SizedBox():
-                          Row(
-                            children: [
-                              Expanded(
-                                child: Card.outlined(
-                                  color: Colors.white,
-                                  margin: const EdgeInsets.all(6),
-                                  child: ListTile(
-                                    title: Text(_messages[index]['answer']??"",
-                                      style: const TextStyle(color: Colors.black,fontSize: 20),),
-                                  ),
-                                ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Card(
+                              margin: const EdgeInsets.all(6),
+                              child: ListTile(
+                                title: Text(msg['answer'] ?? ''),
                               ),
                               const SizedBox(width: 80,),
                             ],
@@ -142,15 +171,25 @@ class _ChatScreenState extends State<ChatScreen> {
                 },
               ),
             ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    blurRadius: 4,
-                    offset: const Offset(0, -2),
+            if (_isLoading) const LinearProgressIndicator(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _controller,
+                      onSubmitted: (_) => _isLoading ? null : _sendMessage(),
+                      decoration: const InputDecoration(
+                        hintText: 'Posez votre question...',
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(15))),
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.send),
+                    onPressed: _isLoading ? null : _sendMessage,
                   ),
                 ],
               ),
