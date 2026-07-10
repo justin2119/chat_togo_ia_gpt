@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class TogoLmService {
-  final String baseUrl = 'https://api.togolm.kofcorporation.com/v1/query';
+  final String baseUrl =dotenv.env['TOGOLM_API_URL'] ?? '' ;
 
   Future<String> query(String prompt) async {
     try {
@@ -16,7 +16,7 @@ class TogoLmService {
           'X-API-Key': apiKey,
         },
         body: jsonEncode({
-          'query': prompt,
+          'question': prompt,
         }),
       );
 

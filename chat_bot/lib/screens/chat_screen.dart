@@ -110,9 +110,8 @@ class _ChatScreenState extends State<ChatScreen> {
                           const SizedBox(width: 80),
                           Expanded(
                             child: Card.outlined(
-                              color: const Color.fromRGBO(0, 112, 82, 5),
                               margin: const EdgeInsets.all(6),
-                              color: Colors.green.shade50,
+                              color: const Color.fromRGBO(0, 112, 82, 1),
                               child: ListTile(
                                 title: Text("${_messages[index]['question']}",
                                   style: const TextStyle(color: Colors.white,fontSize: 20),),
@@ -137,33 +136,57 @@ class _ChatScreenState extends State<ChatScreen> {
                               ),
                               const SizedBox(width: 80,),
                             ],
-                          ),
-                          const SizedBox(width: 80,),
-                            ],
-                          ),
+                          )
                     ],
                   );
                 },
               ),
             ),
-            if (_isLoading) const LinearProgressIndicator(),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      controller: _controller,
-                      onSubmitted: (_) => _isLoading ? null : _sendMessage(),
-                      decoration: InputDecoration(
-                        hintText: 'Posez votre question...',
-                        border: const OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(15))),
-                        suffixIcon: IconButton(onPressed: _isLoading ? null : _sendMessage, icon: const Icon(Icons.send)),
-                      ),
-                    ),
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 4,
+                    offset: const Offset(0, -2),
                   ),
                 ],
+              ),
+              child: SafeArea(
+                top: false,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        controller: _controller,
+                        decoration: InputDecoration(
+                          hintText: 'Posez votre question sur le Togo...',
+                          filled: true,
+                          fillColor: Colors.grey[100],
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide.none,
+                          ),
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 16),
+                        ),
+                        maxLines: null,
+                      ),
+                    ),
+                    IconButton(
+                      icon: _isLoading
+                          ? const CircularProgressIndicator(
+                              strokeWidth: 2,
+                              color: Color.fromRGBO(0, 112, 82, 1),
+                            )
+                          : const Icon(Icons.send_rounded,
+                              color: Color.fromRGBO(0, 112, 82, 1)),
+                      onPressed: _isLoading ? null : _sendMessage,
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
