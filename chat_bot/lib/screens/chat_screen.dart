@@ -117,16 +117,6 @@ class _ChatScreenState extends State<ChatScreen> {
           foregroundColor: Colors.white,
           actions: [
             IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const AboutScreen()),
-                );
-              },
-              icon: const Icon(Icons.info_outline),
-              tooltip: 'À propos',
-            ),
-            IconButton(
               onPressed: () async {
                 await _historyService.clearHistory();
                 setState(() {
@@ -136,7 +126,16 @@ class _ChatScreenState extends State<ChatScreen> {
               icon: const Icon(Icons.delete_sweep),
               tooltip: 'Effacer l\'historique',
             ),
-            IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert))
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const AboutScreen()),
+                );
+              },
+              icon: const Icon(Icons.info_outline),
+              tooltip: 'À propos',
+            ),
           ],
           centerTitle: true,
           elevation: 10,
@@ -158,9 +157,9 @@ class _ChatScreenState extends State<ChatScreen> {
                           Expanded(
                             child: Card(
                               margin: const EdgeInsets.all(6),
-                              color: Colors.green.shade50,
+                              color: const Color.fromRGBO(0, 112, 82, 1),
                               child: ListTile(
-                                title: Text(msg['question'] ?? ''),
+                                title: Text(msg['question'] ?? '',style: const TextStyle(color: Colors.white),),
                               ),
                             ),
                           ),

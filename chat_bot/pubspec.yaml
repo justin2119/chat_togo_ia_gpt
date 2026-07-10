@@ -24,6 +24,5 @@ flutter:
 
   assets:
     - .env
-    - assets/WhatsApp Image 2026-07-07 at 21.34.55.jpeg
-    - assets/profile.jpg
+    - assets/profile.jpeg
     - assets/togo.jpg
