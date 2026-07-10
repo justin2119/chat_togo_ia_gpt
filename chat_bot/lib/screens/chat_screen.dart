@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../services/togo_lm_service.dart';
 import '../services/chat_history_service.dart';
+import 'about_screen.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -116,6 +117,16 @@ class _ChatScreenState extends State<ChatScreen> {
           foregroundColor: Colors.white,
           actions: [
             IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const AboutScreen()),
+                );
+              },
+              icon: const Icon(Icons.info_outline),
+              tooltip: 'À propos',
+            ),
+            IconButton(
               onPressed: () async {
                 await _historyService.clearHistory();
                 setState(() {
@@ -143,13 +154,13 @@ class _ChatScreenState extends State<ChatScreen> {
                     children: [
                       Row(
                         children: [
-                          const SizedBox(width: 40),
+                          const SizedBox(width: 80),
                           Expanded(
-                            child: Card.outlined(
+                            child: Card(
                               margin: const EdgeInsets.all(6),
-                              color: const Color.fromRGBO(0, 112, 82, 1),
+                              color: Colors.green.shade50,
                               child: ListTile(
-                                title: Text(msg['question'] ?? '',style: const TextStyle(color: Colors.white, fontSize: 20),),
+                                title: Text(msg['question'] ?? ''),
                               ),
                             ),
                           ),
@@ -161,11 +172,11 @@ class _ChatScreenState extends State<ChatScreen> {
                             child: Card(
                               margin: const EdgeInsets.all(6),
                               child: ListTile(
-                                title: Text(msg['answer'] ?? '',style: const TextStyle(fontSize: 20),),
+                                title: Text(msg['answer'] ?? ''),
                               ),
                             ),
                           ),
-                          const SizedBox(width: 40),
+                          const SizedBox(width: 80),
                         ],
                       ),
                     ],
@@ -176,41 +187,24 @@ class _ChatScreenState extends State<ChatScreen> {
             if (_isLoading) const LinearProgressIndicator(),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: SafeArea(
-                top: false,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        controller: _controller,
-                        maxLines: null,
-                        maxLength: null,
-                        keyboardType: TextInputType.multiline,
-                        decoration: InputDecoration(
-                          hintText: 'Posez votre question sur le Togo...',
-                          filled: true,
-                          fillColor: Colors.grey[100],
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: const BorderSide(color: Colors.yellow),
-                          ),
-                          contentPadding:
-                              const EdgeInsets.symmetric(horizontal: 16),
-                        ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _controller,
+                      onSubmitted: (_) => _isLoading ? null : _sendMessage(),
+                      decoration: const InputDecoration(
+                        hintText: 'Posez votre question...',
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(15))),
                       ),
                     ),
-                    IconButton(
-                      icon: _isLoading
-                          ? const CircularProgressIndicator(
-                              strokeWidth: 2,
-                              color: Color.fromRGBO(0, 112, 82, 1),
-                            )
-                          : const Icon(Icons.send_rounded,
-                              color: Color.fromRGBO(0, 112, 82, 1)),
-                      onPressed: _isLoading ? null : _sendMessage,
-                    ),
-                  ],
-                ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.send),
+                    onPressed: _isLoading ? null : _sendMessage,
+                  ),
+                ],
               ),
             ),
           ],
