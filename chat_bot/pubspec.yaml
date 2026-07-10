@@ -24,4 +24,5 @@ flutter:
 
   assets:
     - assets/togo.jpg
+    - assets/profile.jpg
     - .env

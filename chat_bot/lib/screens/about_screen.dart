@@ -18,16 +18,17 @@ class AboutScreen extends StatelessWidget {
           children: [
             const Center(
               child: CircleAvatar(
-                radius: 50,
+                radius: 70,
                 backgroundColor: Color.fromRGBO(0, 112, 82, 1),
-                child: Icon(Icons.person, size: 60, color: Colors.white),
+                backgroundImage: AssetImage('assets/profile.jpg'),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
             const Text(
               'Développeur / Developer',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color.fromRGBO(0, 112, 82, 1)),
             ),
+            const SizedBox(height: 8),
             const Text(
               'Justin Bina, Flutter/Dart Developer, expert in African digital sovereignty and TogoLM project.',
               style: TextStyle(fontSize: 16),
@@ -37,6 +38,7 @@ class AboutScreen extends StatelessWidget {
               'Application',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color.fromRGBO(0, 112, 82, 1)),
             ),
+            const SizedBox(height: 8),
             const Text(
               'A Flutter-based chat assistant powered by TogoLM, the first Togolese open-source AI infra.',
               style: TextStyle(fontSize: 16),
