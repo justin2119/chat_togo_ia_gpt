@@ -30,7 +30,7 @@ class AboutScreen extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             const Text(
-              'Justin Bina, Flutter/Dart Developer, expert in African digital sovereignty and TogoLM project.'
+              'Justin Bina, Flutter/Dart Developer, expert in African digital sovereignty and TogoLM project.',
               style: TextStyle(fontSize: 16),
             ),
             SizedBox(height: 24),
