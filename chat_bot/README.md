@@ -4,6 +4,15 @@
 
 ## Français
 
+### Vision et Enjeux Majeurs
+
+Le projet TogoLM Chatbot s'inscrit dans une démarche d'innovation technologique visant à répondre aux défis numériques contemporains du Togo et de la sous-région. Cette application ne se limite pas à être un simple outil de discussion ; elle porte une ambition de transformation numérique à travers quatre piliers essentiels :
+
+*   **Souveraineté Numérique Togolaise** : En s'appuyant sur des infrastructures locales, nous garantissons l'indépendance technologique du pays face aux solutions propriétaires étrangères, assurant ainsi la maîtrise de nos propres données et de nos outils d'intelligence artificielle.
+*   **Infrastructure TogoLM Open-Source** : L'application utilise TogoLM comme socle technologique fondamental. En tant que première infrastructure d'IA open-source au Togo, elle favorise la transparence, la collaboration communautaire et l'amélioration continue des modèles par les talents locaux.
+*   **Émancipation des Développeurs et Utilisateurs** : Nous mettons à disposition des acteurs de la région des outils d'IA sur mesure, adaptés aux besoins spécifiques du marché local. Ce chatbot sert de preuve de concept pour stimuler la création d'un écosystème numérique dynamique et autonome.
+*   **Accessibilité et Pertinence Culturelle** : L'IA est conçue pour comprendre et respecter les nuances linguistiques et culturelles locales. Elle offre une expérience utilisateur authentique, rendant la technologie accessible et utile pour tous, au-delà des barrières traditionnelles.
+
 ### Présentation
 TogoLM Chatbot est un assistant de chat intelligent basé sur Flutter, propulsé par **TogoLM**, la première infrastructure d'IA open-source togolaise. Cette application permet aux utilisateurs de poser des questions sur le Togo et d'obtenir des réponses précises via un modèle de langage souverain.
 
