@@ -1,7 +1,4 @@
 # TogoLM Chatbot
-
-## Français
-
 ### Vision et Enjeux Majeurs
 
 Le projet TogoLM Chatbot s'inscrit dans une démarche d'innovation technologique visant à répondre aux défis numériques contemporains du Togo et de la sous-région. Cette application ne se limite pas à être un simple outil de discussion ; elle porte une ambition de transformation numérique à travers quatre piliers essentiels :
