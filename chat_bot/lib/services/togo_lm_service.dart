@@ -34,6 +34,9 @@ class TogoLmService {
         if (response.statusCode == 401 || response.statusCode == 403) {
           return "Désolé bro, il semble y avoir un souci avec ma clé d'accès à TogoLM...";
         }
+        if (response.statusCode == 500) {
+          return "Le serveur TogoLM est un peu fatigué là, réessaie dans un instant bro...";
+        }
         return "Désolé bro, TogoLM rencontre une petite difficulté technique (Code ${response.statusCode})...";
       }
     } on http.ClientException catch (e) {
