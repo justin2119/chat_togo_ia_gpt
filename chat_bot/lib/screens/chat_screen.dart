@@ -143,13 +143,13 @@ class _ChatScreenState extends State<ChatScreen> {
                     children: [
                       Row(
                         children: [
-                          const SizedBox(width: 80),
+                          const SizedBox(width: 40),
                           Expanded(
                             child: Card.outlined(
                               margin: const EdgeInsets.all(6),
                               color: const Color.fromRGBO(0, 112, 82, 1),
                               child: ListTile(
-                                title: Text(msg['question'] ?? ''),
+                                title: Text(msg['question'] ?? '',style: const TextStyle(color: Colors.white, fontSize: 20),),
                               ),
                             ),
                           ),
@@ -161,11 +161,13 @@ class _ChatScreenState extends State<ChatScreen> {
                             child: Card(
                               margin: const EdgeInsets.all(6),
                               child: ListTile(
-                                title: Text(msg['answer'] ?? ''),
+                                title: Text(msg['answer'] ?? '',style: const TextStyle(fontSize: 20),),
                               ),
-                              const SizedBox(width: 80,),
-                            ],
-                          )
+                            ),
+                          ),
+                          const SizedBox(width: 40),
+                        ],
+                      ),
                     ],
                   );
                 },
@@ -174,25 +176,6 @@ class _ChatScreenState extends State<ChatScreen> {
             if (_isLoading) const LinearProgressIndicator(),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      controller: _controller,
-                      onSubmitted: (_) => _isLoading ? null : _sendMessage(),
-                      decoration: const InputDecoration(
-                        hintText: 'Posez votre question...',
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(15))),
-                      ),
-                    ),
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.send),
-                    onPressed: _isLoading ? null : _sendMessage,
-                  ),
-                ],
-              ),
               child: SafeArea(
                 top: false,
                 child: Row(
@@ -200,18 +183,20 @@ class _ChatScreenState extends State<ChatScreen> {
                     Expanded(
                       child: TextField(
                         controller: _controller,
+                        maxLines: null,
+                        maxLength: null,
+                        keyboardType: TextInputType.multiline,
                         decoration: InputDecoration(
                           hintText: 'Posez votre question sur le Togo...',
                           filled: true,
                           fillColor: Colors.grey[100],
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
-                            borderSide: BorderSide.none,
+                            borderSide: const BorderSide(color: Colors.yellow),
                           ),
                           contentPadding:
                               const EdgeInsets.symmetric(horizontal: 16),
                         ),
-                        maxLines: null,
                       ),
                     ),
                     IconButton(
