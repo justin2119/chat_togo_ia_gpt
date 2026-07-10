@@ -1,7 +1,5 @@
 # TogoLM Chatbot
 
-[Français] | [English]
-
 ## Français
 
 ### Vision et Enjeux Majeurs
