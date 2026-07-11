@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:developer' as developer;
 import 'package:http/http.dart' as http;
@@ -39,6 +40,9 @@ class TogoLmService {
         }
         return "Désolé, TogoLM rencontre une petite difficulté technique (Code ${response.statusCode})...";
       }
+    } on TimeoutException catch (e) {
+      developer.log('TogoLmService Timeout Error: $e');
+      return "Désolé bro, le serveur TogoLM met trop de temps à répondre. Réessaie dans un instant...";
     } on http.ClientException catch (e) {
       developer.log('TogoLmService Network Error: $e');
       return "Désolé, j'arrive pas à joindre TogoLM pour l'instant. Vérifie ta connexion...";
