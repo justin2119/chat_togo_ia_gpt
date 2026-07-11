@@ -123,7 +123,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   _messages.clear();
                 });
               },
-              icon: const Icon(Icons.delete_sweep),
+              icon: const Icon(Icons.delete_sweep,color:Colors.red),
               tooltip: 'Effacer l\'historique',
             ),
             IconButton(

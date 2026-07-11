@@ -11,7 +11,7 @@ class TogoLmService {
 
     if (baseUrl.isEmpty) {
       developer.log('TogoLmService: TOGOLM_API_URL is not set in .env');
-      return "Désolé bro, l'URL du service TogoLM n'est pas configurée...";
+      return "Désolé, l'URL du service TogoLM n'est pas configurée...";
     }
 
     try {
@@ -32,19 +32,19 @@ class TogoLmService {
       } else {
         developer.log('TogoLmService Error: ${response.statusCode} - ${response.body}');
         if (response.statusCode == 401 || response.statusCode == 403) {
-          return "Désolé bro, il semble y avoir un souci avec ma clé d'accès à TogoLM...";
+          return "Désolé, il semble y avoir un souci avec ma clé d'accès à TogoLM...";
         }
         if (response.statusCode == 500) {
           return "Le serveur TogoLM est un peu fatigué là, réessaie dans un instant bro...";
         }
-        return "Désolé bro, TogoLM rencontre une petite difficulté technique (Code ${response.statusCode})...";
+        return "Désolé, TogoLM rencontre une petite difficulté technique (Code ${response.statusCode})...";
       }
     } on http.ClientException catch (e) {
       developer.log('TogoLmService Network Error: $e');
-      return "Désolé bro, j'arrive pas à joindre TogoLM pour l'instant. Vérifie ta connexion...";
+      return "Désolé, j'arrive pas à joindre TogoLM pour l'instant. Vérifie ta connexion...";
     } catch (e) {
       developer.log('TogoLmService Unexpected Error: $e');
-      return "Désolé bro, une erreur inattendue est survenue en essayant de contacter TogoLM...";
+      return "Désolé, une erreur inattendue est survenue en essayant de contacter TogoLM...";
     }
   }
 }
